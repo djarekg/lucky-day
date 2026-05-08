@@ -30,7 +30,7 @@
     "clean": "bunx rimraf dist  node_modules bun.lock; bun run --filter '*' clean",
     "setup": "bun run clean; bun install",
     "ready": "vp fmt && vp lint && vp run test -r && vp run build -r",
-    "dev": "vpr demo#dev",
+    "dev": "vpr web#dev",
     "prepare": "vp config"
   },
   "devDependencies": {
