@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "composite": false,
+    "forceConsistentCasingInFileNames": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/demo"
+    }
+    // {
+    //   "path": "./packages/core"
+    // },
+    // {
+    //   "path": "./packages/conponents"
+    // },
+  ]
+}
