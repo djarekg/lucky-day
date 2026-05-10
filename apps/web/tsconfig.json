@@ -2,9 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
-      // "@ld/components": ["../../packages/components/src/index.ts"],
-      // "@ld/core": ["../../packages/core/src/index.ts"],
+      "@/*": ["./src/*"],
+      // "@lucky-day/components": ["../../packages/components/src/index.ts"],
+      "@lucky-day/core": ["../../packages/ui/core/src/index.ts"]
     }
   },
   "include": [

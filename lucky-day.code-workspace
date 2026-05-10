@@ -144,7 +144,7 @@
     // Lit Plugin Settings
     "lit-plugin.strict": true,
 
-    "cSpell.words": ["tsgo", "unrs", "voidzero"],
+    "cSpell.words": ["griffel", "tsgo", "unrs", "voidzero"],
     "dotnet.defaultSolution": ".vscode/api-net.slnx",
   },
   "extensions": {

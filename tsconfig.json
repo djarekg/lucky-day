@@ -8,10 +8,10 @@
   "references": [
     {
       "path": "./apps/web"
+    },
+    {
+      "path": "./packages/ui/core"
     }
-    // {
-    //   "path": "./packages/core"
-    // },
     // {
     //   "path": "./packages/conponents"
     // },

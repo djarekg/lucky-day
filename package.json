@@ -1,5 +1,5 @@
 {
-  "name": "@ld/workspace",
+  "name": "@lucky-day/workspace",
   "private": true,
   "type": "module",
   "engines": {
@@ -8,10 +8,16 @@
   "packageManager": "bun@1.3.13",
   "workspaces": {
     "packages": [
-      "packages/*",
+      "packages/ui/*",
       "apps/*"
     ],
     "catalog": {
+      "@emotion/cache": "^11.14.0",
+      "@emotion/react": "^11.14.0",
+      "@emotion/styled": "^11.14.1",
+      "@griffel/react": "^1.7.2",
+      "@mui/material": "^9.0.1",
+      "@mui/material-nextjs": "^9.0.1",
       "@types/bun": "latest",
       "@types/react-dom": "latest",
       "@types/react": "latest",

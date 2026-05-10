@@ -1,5 +1,5 @@
 {
-  "name": "@ld/web",
+  "name": "@lucky-day/web",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -10,6 +10,13 @@
     "start": "bun next start"
   },
   "dependencies": {
+    "@emotion/cache": "catalog:",
+    "@emotion/react": "catalog:",
+    "@emotion/styled": "catalog:",
+    "@griffel/react": "catalog:",
+    "@lucky-day/core": "workspace:*",
+    "@mui/material": "catalog:",
+    "@mui/material-nextjs": "catalog:",
     "next": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"

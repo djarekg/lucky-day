@@ -1,0 +1,59 @@
+{
+  "name": "@lucky-day/components",
+  "version": "0.0.1",
+  "description": "",
+  "homepage": "https://github.com/griffidi/lucky-day#readme",
+  "bugs": {
+    "url": "https://github.com/griffidi/lucky-day/issues"
+  },
+  "author": "Dustin Griffith <djarekg@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "library"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    "./loader": {
+      "loader": "./src/loader.tsx"
+    },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./src/index.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "bunx rimraf node_modules dist",
+    "build": "vp pack",
+    "dev": "vp pack --watch",
+    "test": "vp test",
+    "check": "vp check",
+    "prepublishOnly": "vp run build"
+  },
+  "dependencies": {
+    "@emotion/react": "catalog:",
+    "@emotion/styled": "catalog:",
+    "@griffel/react": "catalog:",
+    "@lucky-day/core": "workspace:*",
+    "@mui/material": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@types/bun": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "happy-dom": "catalog:",
+    "vitest": "catalog:"
+  }
+}
