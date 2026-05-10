@@ -19,7 +19,8 @@
     "@mui/material-nextjs": "catalog:",
     "next": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@types/bun": "catalog:",

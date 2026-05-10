@@ -8,3 +8,4 @@ export * from './object';
 export * from './string';
 export type * from './types/index';
 export * from './validation/index';
+export * from './try-catch';
