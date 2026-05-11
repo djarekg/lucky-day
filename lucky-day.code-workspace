@@ -86,6 +86,9 @@
     "[xml]": {
       "editor.defaultFormatter": "redhat.vscode-xml",
     },
+    "[csharp]": {
+      "editor.defaultFormatter": "ms-dotnettools.csharp",
+    },
 
     "js/ts.preferences.importModuleSpecifier": "non-relative",
     "js/ts.preferences.importModuleSpecifierEnding": "minimal",
@@ -144,7 +147,7 @@
     // Lit Plugin Settings
     "lit-plugin.strict": true,
 
-    "cSpell.words": ["griffel", "treeify", "tsgo", "unrs", "voidzero"],
+    "cSpell.words": ["ASPNETCORE", "griffel", "treeify", "tsgo", "unrs", "voidzero"],
     "dotnet.defaultSolution": ".vscode/api-net.slnx",
   },
   "extensions": {
