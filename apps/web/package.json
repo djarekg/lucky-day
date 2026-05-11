@@ -17,9 +17,11 @@
     "@lucky-day/core": "workspace:*",
     "@mui/material": "catalog:",
     "@mui/material-nextjs": "catalog:",
+    "jose": "catalog:",
     "next": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "server-only": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
