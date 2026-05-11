@@ -1,20 +1,54 @@
+using Api.Models;
+using Api.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api.Controllers;
+namespace Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-public class AuthController : ControllerBase
+[Route("auth")]
+public class AuthController(AuthService authService) : ControllerBase
 {
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    /// <summary>
+    /// Validates the provided credentials and returns a signed access token when successful.
+    /// </summary>
+    /// <param name="request">The sign-in request payload.</param>
+    /// <returns>An access token when credentials are valid; otherwise an error response.</returns>
+    [AllowAnonymous]
+    [HttpPost("signin")]
+    public IActionResult Signin([FromBody] AuthModel request)
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
         {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+            return BadRequest("Email and password are required.");
+        }
+
+        var token = authService.Signin(request.Email, request.Password);
+        if (token is null)
+        {
+            return Unauthorized("Invalid credentials.");
+        }
+
+        return Ok(token);
+    }
+
+    /// <summary>
+    /// Verifies that the current request is authenticated by a valid access token.
+    /// </summary>
+    /// <returns>The authenticated state and available identity claims for the current user.</returns>
+    [Authorize]
+    [HttpGet("is-authenticated")]
+    [ProducesResponseType<AuthStatusResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public ActionResult<AuthStatusResult> IsAuthenticated()
+    {
+        var email = User.FindFirstValue(JwtRegisteredClaimNames.Email)
+            ?? User.FindFirstValue(ClaimTypes.Email)
+            ?? User.FindFirstValue(JwtRegisteredClaimNames.Sub);
+        var role = User.FindFirstValue(ClaimTypes.Role);
+
+        return Ok(new AuthStatusResult(true, email, role));
     }
 }

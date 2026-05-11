@@ -1,6 +1,23 @@
 @api_HostAddress = http://localhost:5066
+@email = admin@admin.local
+@password = password123
+@accessToken = replace-me-after-signin
 
-GET {{api_HostAddress}}/weatherforecast/
+### Sign in
+POST {{api_HostAddress}}/auth/signin
+Content-Type: application/json
 Accept: application/json
 
-###
+{
+	"email": "{{email}}",
+	"password": "{{password}}"
+}
+
+### Verify current token
+GET {{api_HostAddress}}/auth/is-authenticated
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### Verify without token
+GET {{api_HostAddress}}/auth/is-authenticated
+Accept: application/json
