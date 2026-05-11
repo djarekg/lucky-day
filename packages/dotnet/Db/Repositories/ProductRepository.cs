@@ -7,7 +7,7 @@ public interface IProductRepository : IRepository<Product>
   Task<IEnumerable<Product>> GetActiveProductsAsync();
 }
 
-public class ProductRepository(LuckyDayDbContext context) : Repository<Product>(context), Repository<Product>, IProductRepository
+public class ProductRepository(LuckyDayDbContext context) : Repository<Product>(context), IProductRepository
 {
   public async Task<Product?> GetProductWithDetailsAsync(string id)
   {

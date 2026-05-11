@@ -6,7 +6,7 @@ public interface IUserRepository : IRepository<User>
   Task<User?> GetUserWithCredentialAsync(string id);
 }
 
-public class UserRepository(LuckyDayDbContext context) : Repository<User>(context), Repository<User>, IUserRepository
+public class UserRepository(LuckyDayDbContext context) : Repository<User>(context), IUserRepository
 {
   public async Task<User?> GetByEmailAsync(string email)
   {

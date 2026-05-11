@@ -99,7 +99,7 @@
     "js/ts.suggest.autoImports": true,
     "js/ts.suggest.completeFunctionCalls": true,
 
-    "typescript.native-preview.tsdk": "root/node_modules/@typescript/native-preview/lib",
+    // "typescript.native-preview.tsdk": "root/node_modules/@typescript/native-preview/lib",
 
     "html.autoClosingTags": true,
     "html.format.indentInnerHtml": true,
@@ -147,8 +147,20 @@
     // Lit Plugin Settings
     "lit-plugin.strict": true,
 
-    "cSpell.words": ["ASPNETCORE", "griffel", "treeify", "tsgo", "unrs", "voidzero"],
-    "dotnet.defaultSolution": ".vscode/api-net.slnx",
+    "cSpell.words": [
+      "ASPNETCORE",
+      "griffel",
+      "hbenl",
+      "PREFERNOTTOSAY",
+      "slnx",
+      "treeify",
+      "tsgo",
+      "typescriptteam",
+      "unrs",
+      "voidzero",
+      "xunit",
+    ],
+    "dotnet.defaultSolution": ".vscode/Api.slnx",
   },
   "extensions": {
     "recommendations": [
@@ -160,6 +172,7 @@
       "ms-dotnettools.vscode-dotnet-runtime",
       "ms-dotnettools.csharp",
       "ms-dotnettools.csdevkit",
+      "hbenl.vscode-test-explorer",
     ],
   },
 }

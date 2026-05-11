@@ -6,7 +6,7 @@ public interface ICustomerRepository : IRepository<Customer>
   Task<IEnumerable<Customer>> GetActiveCustomersAsync();
 }
 
-public class CustomerRepository(LuckyDayDbContext context) : Repository<Customer>(context), Repository<Customer>, ICustomerRepository
+public class CustomerRepository(LuckyDayDbContext context) : Repository<Customer>(context), ICustomerRepository
 {
   public async Task<Customer?> GetCustomerWithContactsAsync(string id)
   {
