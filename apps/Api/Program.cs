@@ -11,13 +11,13 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<UserService>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 await app.InitializeDatabaseAsync();
 app.UseApiHttpConfiguration();
-app.UseAuthentication();
-app.UseAuthorization();
 
 app.MapControllers();
 
