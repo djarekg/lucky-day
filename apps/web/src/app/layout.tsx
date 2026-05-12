@@ -1,4 +1,5 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { ThemeProvider } from '@mui/material/styles';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
@@ -30,10 +31,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={roboto.variable}>
+      className={roboto.variable}
+      suppressHydrationWarning>
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          <InitColorSchemeScript
+            attribute="class"
+            defaultMode="dark"
+          />
+          <ThemeProvider theme={theme}>
+            <main>{children}</main>
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

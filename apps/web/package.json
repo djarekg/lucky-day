@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/cache": "catalog:",
     "@emotion/react": "catalog:",
+    "@emotion/server": "catalog:",
     "@emotion/styled": "catalog:",
     "@griffel/react": "catalog:",
     "@lucky-day/core": "workspace:*",
