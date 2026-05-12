@@ -1,5 +1,4 @@
-import { API_BASE_URL } from '@/lib/config';
-
+/** Contains cache key builders for authentication-related API calls. */
 export const authKeys = {
-  signin: () => `${API_BASE_URL}/auth/signin`,
+  signin: () => '/auth/signin',
 };

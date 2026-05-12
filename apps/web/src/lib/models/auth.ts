@@ -1,9 +1,6 @@
 import { object, string } from 'zod';
 
-/**
- * Defines the schema for the sign-in form, including validation rules for
- * email and password fields.
- */
+/** Defines validation rules for the sign-in form fields. */
 export const SigninFormSchema = object({
   email: string({ error: 'Email is required' }).min(1, 'Email is required').email('Invalid email'),
   password: string()
@@ -12,10 +9,7 @@ export const SigninFormSchema = object({
     .trim(),
 });
 
-/**
- * Defines the type for the sign-in form state, which can include validation errors
- * for email and password fields, as well as a general message.
- */
+/** Describes validation errors and messages shown by the sign-in form. */
 export type SigninFormState =
   | {
       errors?: {
@@ -26,11 +20,13 @@ export type SigninFormState =
     }
   | undefined;
 
+/** Represents the payload sent to the sign-in endpoint. */
 export type SigninRequest = {
   email: string;
   password: string;
 };
 
+/** Represents the response returned by the sign-in endpoint. */
 export type SigninResponse = {
   success: boolean;
 };

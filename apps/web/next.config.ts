@@ -8,4 +8,5 @@ const nextConfig: NextConfig = {
   },
 };
 
+/** Exports the Next.js configuration for the web application. */
 export default nextConfig;

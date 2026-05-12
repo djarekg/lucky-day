@@ -82,4 +82,5 @@ const Signin = () => {
   );
 };
 
+/** Renders the sign-in page form and handles submission state. */
 export default Signin;

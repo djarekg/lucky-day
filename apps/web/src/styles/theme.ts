@@ -9,4 +9,5 @@ const theme = createTheme({
   },
 });
 
+/** Exports the shared Material UI theme used by the app shell. */
 export default theme;

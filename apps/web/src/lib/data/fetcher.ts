@@ -1,3 +1,4 @@
+/** Represents an HTTP request failure with the corresponding status code. */
 export class HttpError extends Error {
   public readonly status: number;
 
@@ -25,6 +26,7 @@ const getErrorMessage = async (response: Response) => {
   return 'Request failed.';
 };
 
+/** Sends a JSON request and parses the JSON response, throwing HttpError on failure. */
 export const jsonFetcher = async <TResponse>(
   input: RequestInfo | URL,
   init?: RequestInit,

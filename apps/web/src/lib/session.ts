@@ -7,11 +7,7 @@ import type { SessionPayload } from '@/lib/models/session';
 
 const SESSION_COOKIE_NAME = 'session';
 
-/**
- * Verifies the current access token by calling the API authentication endpoint.
- *
- * @returns A minimal session payload when token is valid, or undefined when invalid.
- */
+/** Verifies an access token against the API and returns a session payload when valid. */
 export async function decrypt(session: string | undefined = '') {
   if (!session) {
     return undefined;
@@ -50,11 +46,7 @@ export async function decrypt(session: string | undefined = '') {
   }
 }
 
-/**
- * Creates a new user session and stores it in a cookie.
- *
- * @param payload The session payload used to persist the API access token.
- */
+/** Creates a session cookie from the provided authenticated user payload. */
 export const createSession = async (payload: Pick<SessionPayload, 'userId' | 'accessToken'>) => {
   const expiresAt = Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60;
   const cookieStore = await cookies();
@@ -68,9 +60,7 @@ export const createSession = async (payload: Pick<SessionPayload, 'userId' | 'ac
   });
 };
 
-/**
- * Refreshes the existing session cookie and returns the session payload when valid.
- */
+/** Refreshes the session cookie when an existing valid session is present. */
 export const updateSession = async () => {
   const session = (await cookies()).get(SESSION_COOKIE_NAME)?.value;
   const payload = await decrypt(session);
@@ -91,9 +81,7 @@ export const updateSession = async () => {
   });
 };
 
-/**
- * Deletes the session cookie, effectively logging the user out.
- */
+/** Deletes the session cookie to sign out the current user. */
 export const deleteSession = async () => {
   const cookieStore = await cookies();
   cookieStore.delete(SESSION_COOKIE_NAME);

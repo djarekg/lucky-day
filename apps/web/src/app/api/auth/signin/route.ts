@@ -33,6 +33,10 @@ const parseToken = async (response: Response) => {
   return null;
 };
 
+/**
+ * Handles sign-in by validating credentials, creating a session, and
+ * returning a success response.
+ */
 export async function POST(request: Request) {
   const body = await request.json();
 
