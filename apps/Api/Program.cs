@@ -8,6 +8,7 @@ builder.Services.AddDatabaseConfiguration(builder.Configuration, builder.Environ
 builder.Services.AddControllers();
 builder.Services.AddJwtAuthenticationConfiguration(builder.Configuration);
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<UserService>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

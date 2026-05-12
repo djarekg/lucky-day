@@ -21,3 +21,59 @@ Accept: application/json
 ### Verify without token
 GET {{api_HostAddress}}/auth/is-authenticated
 Accept: application/json
+
+@userId = replace-me-user-id
+
+### Get all users
+GET {{api_HostAddress}}/users
+Accept: application/json
+
+### Get user by id
+GET {{api_HostAddress}}/users/{{userId}}
+Accept: application/json
+
+### Create user
+POST {{api_HostAddress}}/users
+Content-Type: application/json
+Accept: application/json
+
+{
+	"firstName": "John",
+	"lastName": "Doe",
+	"gender": "MALE",
+	"email": "john.doe@example.com",
+	"streetAddress": "123 Main St",
+	"streetAddress2": "Apt 4B",
+	"city": "Seattle",
+	"stateId": "WA",
+	"zip": "98101",
+	"phone": "555-123-4567",
+	"jobTitle": "Sales Associate",
+	"imageId": 1,
+	"isActive": true
+}
+
+### Update user
+PUT {{api_HostAddress}}/users/{{userId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+	"firstName": "John",
+	"lastName": "Doe",
+	"gender": "MALE",
+	"email": "john.doe+updated@example.com",
+	"streetAddress": "456 Market St",
+	"streetAddress2": null,
+	"city": "Seattle",
+	"stateId": "WA",
+	"zip": "98104",
+	"phone": "555-987-6543",
+	"jobTitle": "Senior Sales Associate",
+	"imageId": 2,
+	"isActive": true
+}
+
+### Delete user
+DELETE {{api_HostAddress}}/users/{{userId}}
+Accept: application/json
