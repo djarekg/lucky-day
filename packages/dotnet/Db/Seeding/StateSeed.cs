@@ -1,10 +1,10 @@
 namespace Db.Seeding;
 
-public class StateSeed
+public static class StateSeed
 {
   public static async Task SeedStatesAsync(LuckyDayDbContext context)
   {
-    if (context.States.Any())
+    if (await context.States.AnyAsync())
     {
       return;
     }
@@ -67,10 +67,10 @@ public class StateSeed
     await context.SaveChangesAsync();
   }
 
-  public static string GetRandomStateId(LuckyDayDbContext context)
+  public static async Task<string> GetRandomStateIdAsync(LuckyDayDbContext context)
   {
-    var stateCount = context.States.Count();
+    var stateCount = await context.States.CountAsync();
     var randomIndex = Random.Shared.Next(0, stateCount);
-    return context.States.Skip(randomIndex).First().Id;
+    return await context.States.Skip(randomIndex).Select(s => s.Id).FirstAsync();
   }
 }

@@ -13,7 +13,7 @@ public class Product
   public DateTime? DateUpdated { get; set; }
 
   // Navigation properties
-  public ICollection<ProductInventory> ProductInventories { get; set; } = new List<ProductInventory>();
-  public ICollection<ProductSale> ProductSales { get; set; } = new List<ProductSale>();
-  public ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
+  public ICollection<ProductInventory> ProductInventories { get; set; } = [];
+  public ICollection<ProductSale> ProductSales { get; set; } = [];
+  public ICollection<ProductColor> ProductColors { get; set; } = [];
 }

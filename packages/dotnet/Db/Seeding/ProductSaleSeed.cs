@@ -1,10 +1,10 @@
 namespace Db.Seeding;
 
-public class ProductSaleSeed
+public static class ProductSaleSeed
 {
   public static async Task SeedProductSalesAsync(LuckyDayDbContext context)
   {
-    if (context.ProductSales.Any())
+    if (await context.ProductSales.AnyAsync())
     {
       return;
     }
@@ -12,9 +12,9 @@ public class ProductSaleSeed
     var faker = new Faker();
     var productSales = new List<ProductSale>();
 
-    var products = context.Products.ToList();
-    var customers = context.Customers.ToList();
-    var users = context.Users.ToList();
+    var products = await context.Products.ToListAsync();
+    var customers = await context.Customers.ToListAsync();
+    var users = await context.Users.ToListAsync();
 
     for (int i = 0; i < 1000; i++)
     {

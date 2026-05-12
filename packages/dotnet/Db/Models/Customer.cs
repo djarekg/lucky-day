@@ -16,6 +16,6 @@ public class Customer
 
   // Navigation properties
   public State State { get; set; } = null!;
-  public ICollection<CustomerContact> CustomerContacts { get; set; } = new List<CustomerContact>();
-  public ICollection<ProductSale> ProductSales { get; set; } = new List<ProductSale>();
+  public ICollection<CustomerContact> CustomerContacts { get; set; } = [];
+  public ICollection<ProductSale> ProductSales { get; set; } = [];
 }

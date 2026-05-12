@@ -10,10 +10,7 @@ public static class ServiceCollectionExtensions
     }
 
     // Register DbContext
-    services.AddDbContext<LuckyDayDbContext>(options =>
-    {
-      options.UseSqlite(connectionString);
-    });
+    services.AddDbContext<LuckyDayDbContext>(options => options.UseSqlite(connectionString));
 
     // Register Unit of Work
     services.AddScoped<IUnitOfWork, UnitOfWork>();

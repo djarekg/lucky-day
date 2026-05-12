@@ -1,10 +1,10 @@
 namespace Db.Seeding;
 
-public class ProductSeed
+public static class ProductSeed
 {
   public static async Task SeedProductsAsync(LuckyDayDbContext context)
   {
-    if (context.Products.Any())
+    if (await context.Products.AnyAsync())
     {
       return;
     }
@@ -12,8 +12,8 @@ public class ProductSeed
     var faker = new Faker();
     var products = new List<Product>();
 
-    var productTypes = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().ToList();
-    var genders = Enum.GetValues(typeof(Gender)).Cast<Gender>().ToList();
+    var productTypes = Enum.GetValues<ProductType>();
+    var genders = Enum.GetValues<Gender>();
 
     // Create multiple products for each type and gender combination
     foreach (var productType in productTypes)

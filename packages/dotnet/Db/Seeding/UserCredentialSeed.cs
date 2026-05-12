@@ -1,10 +1,10 @@
 namespace Db.Seeding;
 
-public class UserCredentialSeed
+public static class UserCredentialSeed
 {
   public static async Task SeedUserCredentialsAsync(LuckyDayDbContext context)
   {
-    if (context.UserCredentials.Any())
+    if (await context.UserCredentials.AnyAsync())
     {
       return;
     }
@@ -13,7 +13,7 @@ public class UserCredentialSeed
     var credentials = new List<UserCredential>();
 
     // Get all users
-    var users = context.Users.ToList();
+    var users = await context.Users.ToListAsync();
 
     // Create credential for admin user
     var adminUser = users.First(u => u.FirstName == "Admin");
@@ -22,7 +22,7 @@ public class UserCredentialSeed
       Id = Guid.NewGuid().ToString(),
       UserId = adminUser.Id,
       Password = "admin123", // In production, this should be hashed
-      Role = Role.ADMIN
+      Role = Role.Admin
     });
 
     // Create credentials for other users with random roles

@@ -32,7 +32,7 @@ public class Repository<T>(LuckyDayDbContext context) : IRepository<T> where T :
   public async Task DeleteAsync(string id)
   {
     var entity = await GetByIdAsync(id);
-    if (entity != null)
+    if (entity is not null)
     {
       _dbSet.Remove(entity);
       await _context.SaveChangesAsync();
@@ -41,6 +41,6 @@ public class Repository<T>(LuckyDayDbContext context) : IRepository<T> where T :
 
   public async Task<bool> ExistsAsync(string id)
   {
-    return await _dbSet.FindAsync(id) != null;
+    return await _dbSet.FindAsync(id) is not null;
   }
 }

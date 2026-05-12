@@ -79,6 +79,6 @@ public class UnitOfWork(LuckyDayDbContext context) : IUnitOfWork
 
   public void Dispose()
   {
-    _context?.Dispose();
+    _context.Dispose();
   }
 }

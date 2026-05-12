@@ -1,17 +1,18 @@
 namespace Db.Seeding;
 
-public class CustomerContactSeed
+public static class CustomerContactSeed
 {
   public static async Task SeedCustomerContactsAsync(LuckyDayDbContext context)
   {
-    if (context.CustomerContacts.Any())
+    if (await context.CustomerContacts.AnyAsync())
     {
       return;
     }
 
     var faker = new Faker();
+    var stateIds = await context.States.Select(s => s.Id).ToListAsync();
     var customerContacts = new List<CustomerContact>();
-    var customers = context.Customers.ToList();
+    var customers = await context.Customers.ToListAsync();
 
     foreach (var customer in customers)
     {
@@ -27,7 +28,7 @@ public class CustomerContactSeed
           StreetAddress = faker.Address.StreetAddress(),
           StreetAddress2 = faker.Address.SecondaryAddress(),
           City = faker.Address.City(),
-          StateId = StateSeed.GetRandomStateId(context),
+          StateId = faker.PickRandom(stateIds),
           Zip = faker.Address.ZipCode("#####"),
           Phone = faker.Phone.PhoneNumber("+1 (###) ###-####"),
           ImageId = faker.Random.Int(1, 99),

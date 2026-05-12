@@ -2,60 +2,60 @@ namespace Db.Models;
 
 public enum Gender
 {
-  MALE,
-  FEMALE,
-  PREFERNOTTOSAY
+  Male,
+  Female,
+  PreferNotToSay
 }
 
 public enum Role
 {
-  ADMIN,
-  USER,
-  SALES,
-  ACCOUNTING
+  Admin,
+  User,
+  Sales,
+  Accounting
 }
 
 public enum Size
 {
-  XSMALL,
-  SMALL,
-  MEDIUM,
-  LARGE,
-  XLARGE,
-  XXLARGE,
-  XXXLARGE,
-  ONESIZE
+  XSmall,
+  Small,
+  Medium,
+  Large,
+  XLarge,
+  XxLarge,
+  XxxLarge,
+  OneSize
 }
 
 public enum Color
 {
-  BLACK,
-  BLUE,
-  BROWN,
-  CAMO,
-  CYAN,
-  GRAY,
-  GREEN,
-  MAGENTA,
-  ORANGE,
-  PINK,
-  PURPLE,
-  RED,
-  WHITE,
-  YELLOW
+  Black,
+  Blue,
+  Brown,
+  Camo,
+  Cyan,
+  Gray,
+  Green,
+  Magenta,
+  Orange,
+  Pink,
+  Purple,
+  Red,
+  White,
+  Yellow
 }
 
 public enum ProductType
 {
-  DRESS,
-  HAT,
-  HOODIE,
-  JACKET,
-  PANTS,
-  SHIRT,
-  SHOES,
-  SHORTS,
-  SOCKS,
-  SWEATER,
-  UNDERWEAR
+  Dress,
+  Hat,
+  Hoodie,
+  Jacket,
+  Pants,
+  Shirt,
+  Shoes,
+  Shorts,
+  Socks,
+  Sweater,
+  Underwear
 }

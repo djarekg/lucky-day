@@ -1,18 +1,18 @@
 namespace Db.Seeding;
 
-public class ProductColorSeed
+public static class ProductColorSeed
 {
   public static async Task SeedProductColorsAsync(LuckyDayDbContext context)
   {
-    if (context.ProductColors.Any())
+    if (await context.ProductColors.AnyAsync())
     {
       return;
     }
 
     var faker = new Faker();
     var productColors = new List<ProductColor>();
-    var products = context.Products.ToList();
-    var colors = Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
+    var products = await context.Products.ToListAsync();
+    var colors = Enum.GetValues<Color>();
 
     foreach (var product in products)
     {

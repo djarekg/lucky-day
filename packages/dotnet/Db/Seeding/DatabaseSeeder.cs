@@ -1,6 +1,6 @@
 namespace Db.Seeding;
 
-public class DatabaseSeeder
+public static class DatabaseSeeder
 {
   public static async Task SeedDatabaseAsync(LuckyDayDbContext context)
   {

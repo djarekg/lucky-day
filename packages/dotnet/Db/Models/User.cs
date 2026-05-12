@@ -22,5 +22,5 @@ public class User
   // Navigation properties
   public State State { get; set; } = null!;
   public UserCredential? UserCredential { get; set; }
-  public ICollection<ProductSale> ProductSales { get; set; } = new List<ProductSale>();
+  public ICollection<ProductSale> ProductSales { get; set; } = [];
 }

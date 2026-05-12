@@ -1,18 +1,18 @@
 namespace Db.Seeding;
 
-public class ProductInventorySeed
+public static class ProductInventorySeed
 {
   public static async Task SeedProductInventoriesAsync(LuckyDayDbContext context)
   {
-    if (context.ProductInventories.Any())
+    if (await context.ProductInventories.AnyAsync())
     {
       return;
     }
 
     var faker = new Faker();
     var productInventories = new List<ProductInventory>();
-    var products = context.Products.ToList();
-    var sizes = Enum.GetValues(typeof(Size)).Cast<Size>().ToList();
+    var products = await context.Products.ToListAsync();
+    var sizes = Enum.GetValues<Size>();
 
     foreach (var product in products)
     {

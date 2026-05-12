@@ -21,7 +21,7 @@ public class RepositoryCrudTests
     {
       FirstName = "Test",
       LastName = "User",
-      Gender = Gender.PREFERNOTTOSAY,
+      Gender = Gender.PreferNotToSay,
       Email = "repo.user@example.com",
       StreetAddress = "1 Main St",
       City = "Austin",
@@ -65,7 +65,7 @@ public class RepositoryCrudTests
     {
       FirstName = "Credential",
       LastName = "User",
-      Gender = Gender.MALE,
+      Gender = Gender.Male,
       Email = "credential.user@example.com",
       StreetAddress = "2 Main St",
       City = "Austin",
@@ -82,7 +82,7 @@ public class RepositoryCrudTests
     {
       UserId = user.Id,
       Password = "pw",
-      Role = Role.USER
+      Role = Role.User
     });
     await context.SaveChangesAsync();
 
@@ -91,7 +91,7 @@ public class RepositoryCrudTests
 
     Assert.NotNull(loaded);
     Assert.NotNull(loaded.UserCredential);
-    Assert.Equal(Role.USER, loaded.UserCredential.Role);
+    Assert.Equal(Role.User, loaded.UserCredential.Role);
   }
 
   [Fact]
@@ -107,8 +107,8 @@ public class RepositoryCrudTests
       Name = "Active Shirt",
       Description = "Test",
       Price = "49.99",
-      Gender = Gender.FEMALE,
-      ProductType = ProductType.SHIRT,
+      Gender = Gender.Female,
+      ProductType = ProductType.Shirt,
       IsActive = true
     };
 
@@ -117,8 +117,8 @@ public class RepositoryCrudTests
       Name = "Inactive Hat",
       Description = "Test",
       Price = "19.99",
-      Gender = Gender.MALE,
-      ProductType = ProductType.HAT,
+      Gender = Gender.Male,
+      ProductType = ProductType.Hat,
       IsActive = false
     };
 
@@ -128,19 +128,19 @@ public class RepositoryCrudTests
     context.ProductColors.Add(new ProductColor
     {
       ProductId = activeShirt.Id,
-      Color = Color.BLUE
+      Color = Color.Blue
     });
 
     context.ProductInventories.Add(new ProductInventory
     {
       ProductId = activeShirt.Id,
-      Size = Size.MEDIUM,
+      Size = Size.Medium,
       Quantity = 10
     });
 
     await context.SaveChangesAsync();
 
-    var shirtProducts = await repository.GetProductsByTypeAsync(ProductType.SHIRT);
+    var shirtProducts = await repository.GetProductsByTypeAsync(ProductType.Shirt);
     Assert.Single(shirtProducts);
 
     var activeProducts = await repository.GetActiveProductsAsync();
@@ -233,7 +233,7 @@ public class RepositoryCrudTests
       {
         FirstName = "Rollback",
         LastName = "Candidate",
-        Gender = Gender.FEMALE,
+        Gender = Gender.Female,
         Email = "rollback@example.com",
         StreetAddress = "50 River",
         City = "Austin",
