@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# @lucky-day/web
 
-## Getting Started
+Next.js frontend application for Lucky Day, handling authentication flow, sessions, and protected routes.
 
-First, run the development server:
+## TOC
+
+## Overview
+
+`@lucky-day/web` is a Next.js application that provides the browser UI for Lucky Day. It handles sign-in flow, session cookies, route protection, and communication with the API.
+
+## Installation
+
+From the workspace root:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [`src`](src): Application source root.
+  - [`app`](src/app): App Router pages and route handlers.
+    - [`api`](src/app/api): Server route handlers exposed by the web app.
+      - [`auth`](src/app/api/auth): Auth-related routes.
+        - [`signin/route.ts`](src/app/api/auth/signin/route.ts): Sign-in API endpoint.
+    - [`auth/signin/page.tsx`](src/app/auth/signin/page.tsx): Sign-in page.
+    - [`layout.tsx`](src/app/layout.tsx): Root app layout.
+    - [`page.tsx`](src/app/page.tsx): Home page.
+  - [`lib`](src/lib): Shared app logic.
+    - [`actions`](src/lib/actions): Server actions.
+      - [`auth.ts`](src/lib/actions/auth.ts): Sign-out action.
+    - [`data`](src/lib/data): Data fetchers, keys, and hooks.
+      - [`fetcher.ts`](src/lib/data/fetcher.ts): JSON fetch helper.
+      - [`keys.ts`](src/lib/data/keys.ts): SWR key builders.
+      - [`hooks/use-signin.ts`](src/lib/data/hooks/use-signin.ts): Sign-in mutation hook.
+    - [`models`](src/lib/models): Shared DTO and validation types.
+      - [`auth.ts`](src/lib/models/auth.ts): Auth request/response and schema.
+      - [`session.ts`](src/lib/models/session.ts): Session payload type.
+    - [`session.ts`](src/lib/session.ts): Session cookie creation, refresh, and verification.
+    - [`config.ts`](src/lib/config.ts): Runtime config values.
+    - [`routes.ts`](src/lib/routes.ts): Route access metadata.
+  - [`styles`](src/styles): Theme and styling primitives.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## APIs
 
-## Learn More
+- [`POST /api/auth/signin`](src/app/api/auth/signin/route.ts): Validates credentials, calls the backend auth endpoint, verifies authentication, and creates the session cookie. Example:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+curl -X POST http://localhost:3000/api/auth/signin \
+	-H "Content-Type: application/json" \
+	-d '{"email":"admin@fu.com","password":"password"}'
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [`useSignin`](src/lib/data/hooks/use-signin.ts): SWR mutation hook that performs sign-in requests. Example:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```ts
+const { trigger, isMutating, error } = useSignin();
+await trigger({ email: 'admin@fu.com', password: 'password' });
+```
 
-## Deploy on Vercel
+- [`jsonFetcher`](src/lib/data/fetcher.ts): Generic JSON fetch helper that throws `HttpError` for non-2xx responses.
+- [`signout`](src/lib/actions/auth.ts): Server action that clears the session and redirects to `/auth/signin`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## References
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Workspace](../../README.md)
+- [@lucky-day/core](../../packages/ui/core/README.md)
