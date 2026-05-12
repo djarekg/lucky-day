@@ -25,3 +25,12 @@ export type SigninFormState =
       message?: string;
     }
   | undefined;
+
+export type SigninRequest = {
+  email: string;
+  password: string;
+};
+
+export type SigninResponse = {
+  success: boolean;
+};

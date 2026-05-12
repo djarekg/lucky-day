@@ -1,15 +1,47 @@
 'use client';
 
 import Button from '@mui/material/Button';
-import { useActionState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
-import { signin } from '@/lib/actions/auth';
+import { HttpError } from '@/lib/data/fetcher';
+import { useSignin } from '@/lib/data/hooks/use-signin';
+import { SigninFormSchema, type SigninFormState } from '@/lib/models/auth';
 
 const Signin = () => {
-  const [state, action, pending] = useActionState(signin, undefined);
+  const router = useRouter();
+  const { trigger, isMutating } = useSignin();
+  const [state, setState] = useState<SigninFormState>(undefined);
+
+  const onSubmit = async (formData: FormData) => {
+    const validatedFields = SigninFormSchema.safeParse({
+      email: formData.get('email'),
+      password: formData.get('password'),
+    });
+
+    if (!validatedFields.success) {
+      setState({
+        errors: validatedFields.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    setState(undefined);
+
+    try {
+      await trigger(validatedFields.data);
+      router.push('/');
+      router.refresh();
+    } catch (error) {
+      const message = error instanceof HttpError ? error.message : 'Sign-in failed.';
+      setState({
+        message,
+      });
+    }
+  };
 
   return (
-    <form action={action}>
+    <form action={onSubmit}>
       <div>
         <label htmlFor="email">Email</label>
         <input
@@ -39,9 +71,10 @@ const Signin = () => {
           </ul>
         </div>
       )}
+      {state?.message && <p>{state.message}</p>}
 
       <Button
-        disabled={pending}
+        disabled={isMutating}
         type="submit">
         Sign In
       </Button>

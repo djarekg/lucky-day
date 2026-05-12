@@ -1,40 +1,50 @@
 import 'server-only';
 
-import { jwtVerify, SignJWT } from 'jose';
 import { cookies } from 'next/headers';
 
+import { API_BASE_URL } from '@/lib/config';
 import type { SessionPayload } from '@/lib/models/session';
 
-const secretKey = process.env.PRIVATE_KEY as string;
-const encodedKey = new TextEncoder().encode(secretKey);
+const SESSION_COOKIE_NAME = 'session';
 
 /**
- * Encrypts a session payload into an HS256 JWT token.
+ * Verifies the current access token by calling the API authentication endpoint.
  *
- * @param payload The session payload to be encrypted.
- * @returns A promise that resolves to the encrypted JWT token.
- */
-export async function encrypt(payload: SessionPayload) {
-  return new SignJWT(payload)
-    .setProtectedHeader({ alg: 'HS256' })
-    .setIssuedAt()
-    .setExpirationTime('7d')
-    .sign(encodedKey);
-}
-
-/**
- * Decrypts and verifies an HS256 JWT token, returning its payload when valid.
- *
- * @param session The JWT token to be decrypted and verified.
- * @returns A promise that resolves to the decoded session payload if the token is valid,
- * or undefined if invalid.
+ * @returns A minimal session payload when token is valid, or undefined when invalid.
  */
 export async function decrypt(session: string | undefined = '') {
+  if (!session) {
+    return undefined;
+  }
+
   try {
-    const { payload } = await jwtVerify(session, encodedKey, {
-      algorithms: ['HS256'],
+    const response = await fetch(`${API_BASE_URL}/auth/is-authenticated`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${session}`,
+        Accept: 'application/json',
+      },
+      cache: 'no-store',
     });
-    return payload;
+
+    if (!response.ok) {
+      return undefined;
+    }
+
+    const auth = (await response.json()) as {
+      isAuthenticated: boolean;
+      email: string | null;
+    };
+
+    if (!auth.isAuthenticated) {
+      return undefined;
+    }
+
+    return {
+      userId: auth.email ?? 'authenticated-user',
+      accessToken: session,
+      expiresAt: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60,
+    } as SessionPayload;
   } catch (error) {
     console.error('Failed to verify session', error);
   }
@@ -43,18 +53,18 @@ export async function decrypt(session: string | undefined = '') {
 /**
  * Creates a new user session and stores it in a cookie.
  *
- * @param userId The ID of the user for whom the session is being created.
+ * @param payload The session payload used to persist the API access token.
  */
-export const createSession = async (userId: string) => {
-  const expiresAt = Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60; // Expires in 7 days
-  const session = await encrypt({ userId, expiresAt });
+export const createSession = async (payload: Pick<SessionPayload, 'userId' | 'accessToken'>) => {
+  const expiresAt = Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60;
   const cookieStore = await cookies();
 
-  cookieStore.set('session', session, {
+  cookieStore.set(SESSION_COOKIE_NAME, payload.accessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     path: '/',
+    expires: new Date(expiresAt * 1000), // Convert expiresAt to milliseconds for Date constructor
   });
 };
 
@@ -62,19 +72,19 @@ export const createSession = async (userId: string) => {
  * Refreshes the existing session cookie and returns the session payload when valid.
  */
 export const updateSession = async () => {
-  const session = (await cookies()).get('session')?.value;
+  const session = (await cookies()).get(SESSION_COOKIE_NAME)?.value;
   const payload = await decrypt(session);
 
   if (!session || !payload) {
     return null;
   }
 
-  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // Convert expires to milliseconds for Date constructor
   const cookieStore = await cookies();
 
-  cookieStore.set('session', session, {
+  cookieStore.set(SESSION_COOKIE_NAME, session, {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === 'production',
     expires,
     sameSite: 'lax',
     path: '/',
@@ -86,5 +96,5 @@ export const updateSession = async () => {
  */
 export const deleteSession = async () => {
   const cookieStore = await cookies();
-  cookieStore.delete('session');
+  cookieStore.delete(SESSION_COOKIE_NAME);
 };

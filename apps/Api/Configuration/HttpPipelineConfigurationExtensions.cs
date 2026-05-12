@@ -11,7 +11,12 @@ public static class HttpPipelineConfigurationExtensions
       app.MapOpenApi();
     }
 
-    app.UseHttpsRedirection();
+    if (!app.Environment.IsDevelopment())
+    {
+      app.UseHttpsRedirection();
+    }
+
+    app.UseCors("WebClient");
     app.UseAuthentication();
     app.UseAuthorization();
   }

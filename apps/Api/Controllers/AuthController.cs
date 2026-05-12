@@ -31,6 +31,14 @@ public class AuthController(AuthService authService) : ControllerBase
             return Unauthorized("Invalid credentials.");
         }
 
+        Response.Cookies.Append("session", token.AccessToken, new Microsoft.AspNetCore.Http.CookieOptions
+        {
+            HttpOnly = true,
+            Secure = HttpContext.Request.IsHttps,
+            SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax,
+            Expires = new DateTimeOffset(token.ExpiresAtUtc)
+        });
+
         return Ok(token);
     }
 
