@@ -6,7 +6,7 @@ ASP.NET Core Web API backend for authentication, user management, and secure RES
 
 ## Overview
 
-`Api` is an ASP.NET Core Web API project for Lucky Day. It provides authentication and user management endpoints, JWT validation, CORS configuration, and OpenAPI/Swagger support in development.
+`Api` is an ASP.NET Core Web API project for Lucky Day. It provides authentication and user management endpoints, JWT validation, CORS configuration, and session cookie issuance. It includes OpenAPI/Swagger support in development.
 
 ## Structure
 
@@ -24,7 +24,7 @@ ASP.NET Core Web API backend for authentication, user management, and secure RES
 
 ## APIs
 
-- [`POST /auth/signin`](Controllers/AuthController.cs): Validates credentials and returns an access token. Example:
+- [`POST /auth/signin`](Controllers/AuthController.cs): Validates credentials, issues an access token, and sets an HttpOnly session cookie. Example:
 
 ```bash
 curl -X POST http://localhost:5066/auth/signin \

@@ -7,6 +7,15 @@ import type { SessionPayload } from '@/lib/models/session';
 
 const SESSION_COOKIE_NAME = 'session';
 
+/**
+ * Session management for the web app.
+ *
+ * Note: The API (.NET backend) is the sole owner of session cookie issuance and lifetime.
+ * This module provides helpers to read and clear the API-issued session cookie on the client side.
+ * - decrypt: Verifies the access token via the API and reconstructs session data
+ * - deleteSession: Clears the session cookie during sign-out (should be paired with an API logout)
+ */
+
 /** Verifies an access token against the API and returns a session payload when valid. */
 export async function decrypt(session: string | undefined = '') {
   if (!session) {
@@ -46,42 +55,11 @@ export async function decrypt(session: string | undefined = '') {
   }
 }
 
-/** Creates a session cookie from the provided authenticated user payload. */
-export const createSession = async (payload: Pick<SessionPayload, 'userId' | 'accessToken'>) => {
-  const expiresAt = Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60;
-  const cookieStore = await cookies();
-
-  cookieStore.set(SESSION_COOKIE_NAME, payload.accessToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-    expires: new Date(expiresAt * 1000), // Convert expiresAt to milliseconds for Date constructor
-  });
-};
-
-/** Refreshes the session cookie when an existing valid session is present. */
-export const updateSession = async () => {
-  const session = (await cookies()).get(SESSION_COOKIE_NAME)?.value;
-  const payload = await decrypt(session);
-
-  if (!session || !payload) {
-    return null;
-  }
-
-  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // Convert expires to milliseconds for Date constructor
-  const cookieStore = await cookies();
-
-  cookieStore.set(SESSION_COOKIE_NAME, session, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    expires,
-    sameSite: 'lax',
-    path: '/',
-  });
-};
-
-/** Deletes the session cookie to sign out the current user. */
+/**
+ * Clears the session cookie during sign-out.
+ * Note: The API is now the authority for session cookie issuance and lifetime.
+ * This helper is used only for client-side sign-out cleanup.
+ */
 export const deleteSession = async () => {
   const cookieStore = await cookies();
   cookieStore.delete(SESSION_COOKIE_NAME);

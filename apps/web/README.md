@@ -36,14 +36,14 @@ bun run dev
     - [`models`](src/lib/models): Shared DTO and validation types.
       - [`auth.ts`](src/lib/models/auth.ts): Auth request/response and schema.
       - [`session.ts`](src/lib/models/session.ts): Session payload type.
-    - [`session.ts`](src/lib/session.ts): Session cookie creation, refresh, and verification.
+    - [`session.ts`](src/lib/session.ts): Session cookie verification and client-side sign-out helper.
     - [`config.ts`](src/lib/config.ts): Runtime config values.
     - [`routes.ts`](src/lib/routes.ts): Route access metadata.
   - [`styles`](src/styles): Theme and styling primitives.
 
 ## APIs
 
-- [`POST /api/auth/signin`](src/app/api/auth/signin/route.ts): Validates credentials, calls the backend auth endpoint, verifies authentication, and creates the session cookie. Example:
+- [`POST /api/auth/signin`](src/app/api/auth/signin/route.ts): Validates credentials against the backend auth endpoint and verifies authentication. The session cookie is issued by the API. Example:
 
 ```bash
 curl -X POST http://localhost:3000/api/auth/signin \
