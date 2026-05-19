@@ -1,11 +1,11 @@
-using Api.Models;
-using Api.Services;
+using LuckyDay.Api.Models;
+using LuckyDay.Api.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace LuckyDay.Api.Controllers;
 
 [ApiController]
 [Route("auth")]

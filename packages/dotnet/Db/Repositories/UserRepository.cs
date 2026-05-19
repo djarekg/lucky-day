@@ -1,14 +1,14 @@
-namespace Db.Repositories;
+namespace LuckyDay.Db.Repositories;
 
 public interface IUserRepository : IRepository<User>
 {
-  Task<User?> GetByEmailAsync(string email);
+  new Task<User?> GetByEmailAsync(string email);
   Task<User?> GetUserWithCredentialAsync(string id);
 }
 
 public class UserRepository(LuckyDayDbContext context) : Repository<User>(context), IUserRepository
 {
-  public async Task<User?> GetByEmailAsync(string email)
+  public new async Task<User?> GetByEmailAsync(string email)
   {
     return await _dbSet.FirstOrDefaultAsync(u => u.Email == email);
   }

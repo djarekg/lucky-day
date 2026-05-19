@@ -1,4 +1,4 @@
-namespace Db.Models;
+namespace LuckyDay.Db.Models;
 
 public class UserCredential
 {

@@ -1,7 +1,7 @@
-using Api.Auth;
-using Api.Models;
+using LuckyDay.Api.Auth;
+using LuckyDay.Api.Models;
 
-namespace Api.Services;
+namespace LuckyDay.Api.Services;
 
 public class AuthService(IConfiguration configuration)
 {

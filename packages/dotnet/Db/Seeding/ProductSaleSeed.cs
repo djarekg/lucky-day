@@ -1,4 +1,4 @@
-namespace Db.Seeding;
+namespace LuckyDay.Db.Seeding;
 
 public static class ProductSaleSeed
 {

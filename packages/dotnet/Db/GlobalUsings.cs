@@ -1,7 +1,8 @@
 global using Bogus;
-global using Db.Data;
-global using Db.Models;
-global using Db.Repositories;
-global using Db.Seeding;
+global using LuckyDay.Db.Data;
+global using LuckyDay.Db.Enums;
+global using LuckyDay.Db.Models;
+global using LuckyDay.Db.Repositories;
+global using LuckyDay.Db.Seeding;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.DependencyInjection;

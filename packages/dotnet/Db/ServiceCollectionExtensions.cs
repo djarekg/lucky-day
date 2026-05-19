@@ -1,4 +1,4 @@
-namespace Db;
+namespace LuckyDay.Db;
 
 public static class ServiceCollectionExtensions
 {
@@ -19,6 +19,17 @@ public static class ServiceCollectionExtensions
     services.AddScoped<IUserRepository, UserRepository>();
     services.AddScoped<IProductRepository, ProductRepository>();
     services.AddScoped<ICustomerRepository, CustomerRepository>();
+    services.AddScoped<IStateRepository, StateRepository>();
+    services.AddScoped<IUserCredentialRepository, UserCredentialRepository>();
+    services.AddScoped<ICustomerContactRepository, CustomerContactRepository>();
+    services.AddScoped<IProductColorRepository, ProductColorRepository>();
+    services.AddScoped<IProductInventoryRepository, ProductInventoryRepository>();
+    services.AddScoped<IProductSaleRepository, ProductSaleRepository>();
+    services.AddScoped<ITokenRevocationRepository, TokenRevocationRepository>();
+    services.AddScoped<ISearchRepository, SearchRepository>();
+    services.AddScoped<IDashboardWidgetRepository, DashboardWidgetRepository>();
+    services.AddScoped<IUserDashboardRepository, UserDashboardRepository>();
+    services.AddScoped<TokenRevocationRepository>();
 
     return services;
   }

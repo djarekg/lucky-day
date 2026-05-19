@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Api.Auth;
+namespace LuckyDay.Api.Auth;
 
 internal static class JwtTokenFactory
 {

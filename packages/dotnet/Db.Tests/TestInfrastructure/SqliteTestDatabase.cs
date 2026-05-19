@@ -1,6 +1,6 @@
-using Db.Data;
+using LuckyDay.Db.Data;
 
-namespace Db.Tests.TestInfrastructure;
+namespace LuckyDay.Db.Tests.TestInfrastructure;
 
 internal sealed class SqliteTestDatabase : IAsyncDisposable
 {

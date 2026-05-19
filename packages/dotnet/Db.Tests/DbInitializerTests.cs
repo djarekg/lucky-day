@@ -1,8 +1,8 @@
-using Db.Tests.TestInfrastructure;
+using LuckyDay.Db.Tests.TestInfrastructure;
 using Microsoft.EntityFrameworkCore;
-using Db.Data;
+using LuckyDay.Db.Data;
 
-namespace Db.Tests;
+namespace LuckyDay.Db.Tests;
 
 public class DbInitializerTests
 {

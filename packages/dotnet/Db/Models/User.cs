@@ -1,4 +1,4 @@
-namespace Db.Models;
+namespace LuckyDay.Db.Models;
 
 public class User
 {
@@ -23,4 +23,5 @@ public class User
   public State State { get; set; } = null!;
   public UserCredential? UserCredential { get; set; }
   public ICollection<ProductSale> ProductSales { get; set; } = [];
+  public ICollection<UserDashboard> UserDashboards { get; set; } = [];
 }

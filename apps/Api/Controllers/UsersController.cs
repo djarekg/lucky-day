@@ -1,8 +1,8 @@
-using Api.Models;
-using Api.Services;
+using LuckyDay.Api.Models;
+using LuckyDay.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace LuckyDay.Api.Controllers;
 
 [ApiController]
 [Route("users")]
@@ -16,12 +16,12 @@ public class UsersController(UserService userService) : ControllerBase
     return Ok(users);
   }
 
-  [HttpGet("{id}")]
+  [HttpGet("{email}")]
   [ProducesResponseType<UserResponseModel>(StatusCodes.Status200OK)]
   [ProducesResponseType(StatusCodes.Status404NotFound)]
-  public async Task<ActionResult<UserResponseModel>> GetById(string id)
+  public async Task<ActionResult<UserResponseModel>> GetByEmail(string email)
   {
-    var user = await userService.GetByIdAsync(id);
+    var user = await userService.GetByEmailAsync(email);
     if (user is null)
     {
       return NotFound();
@@ -41,7 +41,7 @@ public class UsersController(UserService userService) : ControllerBase
     }
 
     var createdUser = await userService.CreateAsync(request);
-    return CreatedAtAction(nameof(GetById), new { id = createdUser.Id }, createdUser);
+    return CreatedAtAction(nameof(GetByEmail), new { id = createdUser.Id }, createdUser);
   }
 
   [HttpPut("{id}")]

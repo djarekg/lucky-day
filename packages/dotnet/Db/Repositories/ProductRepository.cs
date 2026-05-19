@@ -1,4 +1,4 @@
-namespace Db.Repositories;
+namespace LuckyDay.Db.Repositories;
 
 public interface IProductRepository : IRepository<Product>
 {

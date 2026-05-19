@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <RootNamespace>Api</RootNamespace>
+    <RootNamespace>LuckyDay.Api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

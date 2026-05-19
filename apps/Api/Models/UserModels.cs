@@ -1,6 +1,6 @@
-using Db.Models;
+using LuckyDay.Db.Enums;
 
-namespace Api.Models;
+namespace LuckyDay.Api.Models;
 
 public record UserCreateModel(
   string FirstName,

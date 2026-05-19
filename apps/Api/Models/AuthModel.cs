@@ -1,4 +1,4 @@
-namespace Api.Models;
+namespace LuckyDay.Api.Models;
 
 public class AuthModel
 {

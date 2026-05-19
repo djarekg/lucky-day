@@ -1,7 +1,7 @@
-using Db;
+using LuckyDay.Db;
 using Microsoft.Data.Sqlite;
 
-namespace Api.Configuration;
+namespace LuckyDay.Api.Configuration;
 
 public static class DatabaseConfigurationExtensions
 {
@@ -44,7 +44,7 @@ public static class DatabaseConfigurationExtensions
     }
 
     using var scope = app.Services.CreateScope();
-    var dbContext = scope.ServiceProvider.GetRequiredService<Db.Data.LuckyDayDbContext>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<LuckyDay.Db.Data.LuckyDayDbContext>();
     await DbInitializer.InitializeDatabaseAsync(dbContext);
   }
 }

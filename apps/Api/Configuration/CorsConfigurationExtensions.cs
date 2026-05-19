@@ -1,4 +1,4 @@
-namespace Api.Configuration;
+namespace LuckyDay.Api.Configuration;
 
 public static class CorsConfigurationExtensions
 {

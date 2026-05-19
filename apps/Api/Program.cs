@@ -1,18 +1,14 @@
-using Api.Configuration;
-using Api.Services;
+using LuckyDay.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+var jwtConfiguration = new JwtConfigurationService(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddDatabaseConfiguration(builder.Configuration, builder.Environment);
-builder.Services.AddControllers();
+builder.Services.AddSingleton<IJwtConfigurationService>(jwtConfiguration);
 builder.Services.AddCorsConfiguration(builder.Configuration);
-builder.Services.AddJwtAuthenticationConfiguration(builder.Configuration);
-
-builder.Services.AddScoped<AuthService>();
-builder.Services.AddScoped<UserService>();
-
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddJwtAuthenticationConfiguration(jwtConfiguration);
+builder.Services.AddApiServiceConfiguration();
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

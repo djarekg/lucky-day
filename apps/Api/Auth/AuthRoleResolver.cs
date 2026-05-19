@@ -1,4 +1,4 @@
-namespace Api.Auth;
+namespace LuckyDay.Api.Auth;
 
 internal static class AuthRoleResolver
 {

@@ -1,4 +1,4 @@
-namespace Db.Seeding;
+namespace LuckyDay.Db.Seeding;
 
 public static class DatabaseSeeder
 {
@@ -20,6 +20,12 @@ public static class DatabaseSeeder
 
       Console.WriteLine("Seeding User Credentials...");
       await UserCredentialSeed.SeedUserCredentialsAsync(context);
+
+      Console.WriteLine("Seeding Dashboard Widgets...");
+      await DashboardWidgetSeed.SeedDashboardWidgetsAsync(context);
+
+      Console.WriteLine("Seeding User Dashboards...");
+      await UserDashboardSeed.SeedUserDashboardsAsync(context);
 
       Console.WriteLine("Seeding Customers...");
       await CustomerSeed.SeedCustomersAsync(context);

@@ -1,10 +1,11 @@
-using Db.Data;
-using Db.Models;
-using Db.Repositories;
-using Db.Tests.TestInfrastructure;
+using LuckyDay.Db.Data;
+using LuckyDay.Db.Enums;
+using LuckyDay.Db.Models;
+using LuckyDay.Db.Repositories;
+using LuckyDay.Db.Tests.TestInfrastructure;
 using Microsoft.EntityFrameworkCore;
 
-namespace Db.Tests;
+namespace LuckyDay.Db.Tests;
 
 public class RepositoryCrudTests
 {
@@ -42,7 +43,7 @@ public class RepositoryCrudTests
     user.LastName = "Updated";
     await repository.UpdateAsync(user);
 
-    var updated = await repository.GetByIdAsync(user.Id);
+    var updated = await repository.GetByEmailAsync(user.Email);
     Assert.NotNull(updated);
     Assert.Equal("Updated", updated.LastName);
 

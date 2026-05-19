@@ -1,13 +1,13 @@
-namespace Db.Repositories;
+namespace LuckyDay.Db.Repositories;
 
 public class Repository<T>(LuckyDayDbContext context) : IRepository<T> where T : class
 {
   protected readonly LuckyDayDbContext _context = context;
   protected readonly DbSet<T> _dbSet = context.Set<T>();
 
-  public async Task<T?> GetByIdAsync(string id)
+  public async Task<T?> GetByEmailAsync(string email)
   {
-    return await _dbSet.FindAsync(id);
+    return await _dbSet.FindAsync(email);
   }
 
   public async Task<IEnumerable<T>> GetAllAsync()
@@ -31,7 +31,7 @@ public class Repository<T>(LuckyDayDbContext context) : IRepository<T> where T :
 
   public async Task DeleteAsync(string id)
   {
-    var entity = await GetByIdAsync(id);
+    var entity = await GetByEmailAsync(id);
     if (entity is not null)
     {
       _dbSet.Remove(entity);
