@@ -1,12 +1,15 @@
 'use client';
 
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { HttpError } from '@/lib/data/fetcher';
 import { useSignin } from '@/lib/data/hooks/use-signin';
 import { SigninFormSchema, type SigninFormState } from '@/lib/models/auth';
+
+import styles from './page.module.css';
 
 const Signin = () => {
   const router = useRouter();
@@ -41,26 +44,34 @@ const Signin = () => {
   };
 
   return (
-    <form action={onSubmit}>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Email"
-        />
-      </div>
+    <form
+      className={styles.form}
+      action={onSubmit}>
+      <TextField
+        variant="standard"
+        label="Email"
+        name="email"
+        type="email"
+      />
       {state?.errors?.email && <p>{state.errors.email}</p>}
 
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-        />
-      </div>
+      <TextField
+        variant="standard"
+        label="Password"
+        name="password"
+        type="password"
+      />
+      {state?.errors?.password && (
+        <div>
+          <p>Password must:</p>
+          <ul>
+            {state.errors.password.map(error => (
+              <li key={error}>- {error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {state?.errors?.password && (
         <div>
           <p>Password must:</p>

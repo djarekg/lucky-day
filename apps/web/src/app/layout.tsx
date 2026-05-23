@@ -1,4 +1,5 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
+import CssBaseline from '@mui/material/CssBaseline';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { ThemeProvider } from '@mui/material/styles';
 import type { Metadata } from 'next';
@@ -42,6 +43,7 @@ export default function RootLayout({
             defaultMode="dark"
           />
           <ThemeProvider theme={theme}>
+            <CssBaseline />
             <main>{children}</main>
           </ThemeProvider>
         </AppRouterCacheProvider>
