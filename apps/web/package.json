@@ -16,6 +16,7 @@
     "@emotion/styled": "catalog:",
     "@griffel/react": "catalog:",
     "@lucky-day/core": "workspace:*",
+    "@mui/icons-material": "catalog:",
     "@mui/material": "catalog:",
     "@mui/material-nextjs": "catalog:",
     "jose": "catalog:",

@@ -1,10 +1,42 @@
+.container {
+  display: grid;
+  place-content: center;
+  block-size: 100vh;
+}
+
+.header {
+  /* display: flex;
+  align-items: flex-end;
+  gap: 0.25rem; */
+  background: linear-gradient(
+    to right bottom,
+    var(--mui-palette-primary-main) 45%,
+    var(--mui-palette-secondary-main) 80%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-inline: auto;
-  inline-size: min(100%, 400px);
+  inline-size: 400px;
   background: var(--mui-palette-container);
   padding: 2rem;
   border-radius: 0.5rem;
+}
+
+@container app-container (inline-size < 600px) {
+  .container {
+    display: block;
+  }
+
+  .form {
+    block-size: 100%;
+    inline-size: 100%;
+    border-radius: 0;
+  }
 }

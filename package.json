@@ -17,6 +17,7 @@
       "@emotion/server": "^11.11.0",
       "@emotion/styled": "^11.14.1",
       "@griffel/react": "^1.7.2",
+      "@mui/icons-material": "^9.0.1",
       "@mui/material": "^9.0.1",
       "@mui/material-nextjs": "^9.0.1",
       "@types/bun": "latest",

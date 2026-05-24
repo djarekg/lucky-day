@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { API_BASE_URL } from '@/lib/config';
-import { SigninFormSchema } from '@/lib/models/auth';
+import { signinFormSchema } from '@/lib/models/auth';
 
 /**
  * Handles sign-in by forwarding credentials to the API.
@@ -11,7 +11,7 @@ import { SigninFormSchema } from '@/lib/models/auth';
 export async function POST(request: Request) {
   const body = await request.json();
 
-  const validatedFields = SigninFormSchema.safeParse(body);
+  const validatedFields = signinFormSchema.safeParse(body);
   if (!validatedFields.success) {
     return NextResponse.json(
       {

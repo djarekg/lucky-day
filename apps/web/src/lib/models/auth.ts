@@ -1,7 +1,7 @@
 import { object, string } from 'zod';
 
 /** Defines validation rules for the sign-in form fields. */
-export const SigninFormSchema = object({
+export const signinFormSchema = object({
   email: string({ error: 'Email is required' }).min(1, 'Email is required').email('Invalid email'),
   password: string()
     .min(4, 'Password must be more than 4 characters')
