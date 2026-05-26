@@ -7,6 +7,7 @@ import { Roboto } from 'next/font/google';
 
 import theme from '@/styles/theme';
 
+import '../styles/styles.css';
 import './globals.css';
 
 const roboto = Roboto({

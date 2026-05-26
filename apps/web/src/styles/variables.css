@@ -1,0 +1,12 @@
+:root {
+  /* Layout */
+  --app-header-height: 4rem;
+  --app-main-height: calc(100vh - var(--app-header-height));
+
+  /* Colors */
+  --app-color-brand-gradient: linear-gradient(
+    135deg,
+    var(--mui-palette-primary-main),
+    var(--mui-palette-secondary-main)
+  );
+}

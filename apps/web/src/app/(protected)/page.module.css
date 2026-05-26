@@ -1,0 +1,14 @@
+.page {
+  display: grid;
+  place-content: center;
+  block-size: var(--app-main-height);
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  background: var(--app-color-brand-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
