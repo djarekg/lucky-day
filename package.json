@@ -18,11 +18,12 @@
       "@emotion/styled": "^11.14.1",
       "@griffel/react": "^1.7.2",
       "@mui/icons-material": "^9.0.1",
-      "@mui/material": "^9.0.1",
       "@mui/material-nextjs": "^9.0.1",
+      "@mui/material": "^9.0.1",
       "@types/bun": "latest",
       "@types/react-dom": "latest",
       "@types/react": "latest",
+      "@typescript/native-preview": "7.0.0-dev.20260421.2",
       "babel-plugin-react-compiler": "1.0.0",
       "happy-dom": "~20.9.0",
       "jose": "^6.2.3",
@@ -31,7 +32,7 @@
       "react": "19.2.6",
       "server-only": "^0.0.1",
       "swr": "^2.4.1",
-      "typescript": "^6.0.3",
+      "typescript": "npm:@typescript/native-preview@7.0.0-dev.20260421.2",
       "vite-plus": "latest",
       "vite": "npm:@voidzero-dev/vite-plus-core@latest",
       "vitest": "npm:@voidzero-dev/vite-plus-test@latest",
@@ -49,6 +50,7 @@
     "vite-plus": "catalog:"
   },
   "overrides": {
+    "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"
   }

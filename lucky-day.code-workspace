@@ -90,16 +90,16 @@
       "editor.defaultFormatter": "ms-dotnettools.csharp",
     },
 
+    "js/ts.experimental.useTsgo": true,
+    "js/ts.tsdk.path": "root/node_modules/@typescript/native-preview/lib",
+
     "js/ts.preferences.importModuleSpecifier": "non-relative",
     "js/ts.preferences.importModuleSpecifierEnding": "minimal",
     // "js/ts.preferences.autoImportFileExcludePatterns": [],
-    // "js/ts.experimental.useTsgo": true,
     "js/ts.reportStyleChecksAsWarnings": false,
     "js/ts.preferences.preferTypeOnlyAutoImports": true,
     "js/ts.suggest.autoImports": true,
     "js/ts.suggest.completeFunctionCalls": true,
-
-    // "typescript.native-preview.tsdk": "root/node_modules/@typescript/native-preview/lib",
 
     "html.autoClosingTags": true,
     "html.format.indentInnerHtml": true,

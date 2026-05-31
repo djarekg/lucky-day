@@ -1,3 +1,1 @@
-export const noop = () => {
-  console.warn('No-op function called.');
-};
+export type * from './icons';

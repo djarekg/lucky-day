@@ -15,14 +15,15 @@
     "@emotion/server": "catalog:",
     "@emotion/styled": "catalog:",
     "@griffel/react": "catalog:",
+    "@lucky-day/components": "workspace:*",
     "@lucky-day/core": "workspace:*",
     "@mui/icons-material": "catalog:",
-    "@mui/material": "catalog:",
     "@mui/material-nextjs": "catalog:",
+    "@mui/material": "catalog:",
     "jose": "catalog:",
     "next": "catalog:",
-    "react": "catalog:",
     "react-dom": "catalog:",
+    "react": "catalog:",
     "server-only": "catalog:",
     "swr": "catalog:",
     "zod": "catalog:"
@@ -30,10 +31,10 @@
   "devDependencies": {
     "@types/bun": "catalog:",
     "@types/node": "25.9.1",
-    "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@types/react": "catalog:",
+    "@typescript/native-preview": "catalog:",
     "babel-plugin-react-compiler": "catalog:",
-    "typescript": "catalog:",
     "vite-plus": "catalog:"
   },
   "ignoreScripts": [

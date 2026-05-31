@@ -13,6 +13,12 @@
 }
 
 .logo {
-  block-size: 40px;
-  inline-size: 40px;
+  cursor: pointer;
+  transition:
+    transform 200ms linear,
+    filter 200ms ease-in-out;
+
+  &:hover {
+    transform: rotate(90deg) scale(1.1);
+  }
 }

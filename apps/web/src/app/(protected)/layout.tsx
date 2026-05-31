@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import Header from '@/components/layout/header/header';
+import Header from '@/components/layout/header';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

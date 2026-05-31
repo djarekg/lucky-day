@@ -19,13 +19,14 @@
     "README.md"
   ],
   "exports": {
+    "./icons": {
+      "import": "./src/icons/index.tsx"
+    },
     "./loader": {
-      "loader": "./src/loader.tsx"
+      "import": "./src/loader/loader.tsx"
     },
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "default": "./src/index.ts"
+      "import": "./src/index.ts"
     },
     "./package.json": "./package.json"
   },

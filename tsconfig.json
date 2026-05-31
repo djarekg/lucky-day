@@ -11,9 +11,9 @@
     },
     {
       "path": "./packages/ui/core"
+    },
+    {
+      "path": "./packages/ui/components"
     }
-    // {
-    //   "path": "./packages/conponents"
-    // },
   ]
 }

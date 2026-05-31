@@ -3,7 +3,7 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      // "@lucky-day/components": ["../../packages/components/src/index.ts"],
+      "@lucky-day/components": ["../../packages/components/src/index.ts"],
       "@lucky-day/core": ["../../packages/ui/core/src/index.ts"]
     }
   },

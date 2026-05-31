@@ -1,4 +1,4 @@
-@layer base, mui;
+@layer theme, base, mui, components, utilities;
 
 @layer base {
   html,

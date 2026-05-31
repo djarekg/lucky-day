@@ -2,6 +2,12 @@ import { defineConfig } from 'vite-plus';
 
 /** Exports Vite+ settings for lint and type-aware checks. */
 export default defineConfig({
+  pack: {
+    dts: {
+      tsgo: true,
+    },
+    exports: true,
+  },
   lint: { options: { typeAware: true, typeCheck: true } },
   ssr: {
     // Workaround for resolving dependencies in the server bundle
