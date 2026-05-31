@@ -5,7 +5,7 @@ namespace LuckyDay.Api.Services;
 
 public class AuthService(IConfiguration configuration)
 {
-  private const int DefaultTokenExpirationMinutes = 60;
+  private const int DefaultTokenExpirationMinutes = 1440;
 
   /// <summary>
   /// Validates the provided credentials and returns a signed JWT access token when valid.
