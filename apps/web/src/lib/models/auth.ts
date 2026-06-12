@@ -21,12 +21,26 @@ export type SigninFormState =
   | undefined;
 
 /** Represents the payload sent to the sign-in endpoint. */
-export type SigninRequest = {
-  email: string;
-  password: string;
-};
+export type SigninRequest = Pick<AuthModel, 'email' | 'password'>;
 
 /** Represents the response returned by the sign-in endpoint. */
 export type SigninResponse = {
   success: boolean;
+};
+
+export type AuthModel = {
+  email: string;
+  password: string;
+};
+
+export type AuthStatusResult = {
+  isAuthenticated: boolean;
+  email: string | null;
+  role: string | null;
+};
+
+export type AuthTokenResult = {
+  accessToken: string;
+  expiresAtUtc: string;
+  tokenType: string;
 };
