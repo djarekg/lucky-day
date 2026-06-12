@@ -5,7 +5,7 @@
     },
     {
       "path": ".",
-      "name": "root",
+      "name": ".root",
     },
     {
       "path": "docs",
@@ -143,9 +143,6 @@
       "tsconfig.json": "tsconfig.*.json",
       "package.json": "bun.lock",
     },
-
-    // Lit Plugin Settings
-    "lit-plugin.strict": true,
 
     "cSpell.words": [
       "ASPNETCORE",
