@@ -25,6 +25,9 @@
     "./loader": {
       "import": "./src/loader/loader.tsx"
     },
+    "./icon-switch": {
+      "import": "./src/switch/icon-switch.tsx"
+    },
     ".": {
       "import": "./src/index.ts"
     },
