@@ -38,11 +38,11 @@ export default function RootLayout({
       className={roboto.variable}
       suppressHydrationWarning>
       <body>
+        <InitColorSchemeScript
+          attribute="class"
+          defaultMode="dark"
+        />
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <InitColorSchemeScript
-            attribute="class"
-            defaultMode="dark"
-          />
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <main>{children}</main>
