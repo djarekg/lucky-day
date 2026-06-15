@@ -1,6 +1,21 @@
+import { makeStyles } from '@griffel/react';
 import { Button, Card, CardActions, CardContent, Typography } from '@mui/material';
 
 import type { UserModel } from '@/lib/models';
+
+type UserCardsProps = {
+  loading?: boolean;
+  users: UserModel[];
+};
+
+const useStyles = makeStyles({
+  container: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+    gap: '1rem',
+    alignItems: 'stretch',
+  },
+});
 
 const UserCard = (user: UserModel) => {
   return (
@@ -23,9 +38,15 @@ const UserCard = (user: UserModel) => {
   );
 };
 
-const UserCards = ({ users }: { users: UserModel[] }) => {
+const UserCards = ({ loading, users }: UserCardsProps) => {
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const styles = useStyles();
+
   return (
-    <div>
+    <div className={styles.container}>
       {users.map(user => (
         <UserCard
           key={user.id}
