@@ -1,4 +1,4 @@
-import type { Gender } from './enums';
+import type { Gender } from './gender';
 
 export type UserModel = {
   id: string;

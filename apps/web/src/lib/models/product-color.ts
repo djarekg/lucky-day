@@ -1,4 +1,18 @@
-import type { Color } from './enums';
+export type Color =
+  | 'BLACK'
+  | 'BLUE'
+  | 'BROWN'
+  | 'CAMO'
+  | 'CYAN'
+  | 'GRAY'
+  | 'GREEN'
+  | 'MAGENTA'
+  | 'ORANGE'
+  | 'PINK'
+  | 'PURPLE'
+  | 'RED'
+  | 'WHITE'
+  | 'YELLOW';
 
 export type ProductColorModel = {
   id: string;

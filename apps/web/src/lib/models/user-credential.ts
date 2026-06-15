@@ -1,4 +1,4 @@
-import type { Role } from './enums';
+export type Role = 'ADMIN' | 'USER' | 'SALES' | 'ACCOUNTING';
 
 export type UserCredentialModel = {
   id: string;

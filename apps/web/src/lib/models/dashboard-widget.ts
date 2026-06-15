@@ -1,4 +1,6 @@
-import type { DashboardWidgetCategory, DashboardWidgetType } from './enums';
+export type DashboardWidgetCategory = 'ACCOUNTING' | 'INVENTORY' | 'SALES' | 'USERACTIVITY';
+
+export type DashboardWidgetType = 'CHART' | 'TOTAL' | 'TOTALLIST';
 
 export type DashboardWidgetModel = {
   id: string;

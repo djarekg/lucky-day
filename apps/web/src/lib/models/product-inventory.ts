@@ -1,4 +1,12 @@
-import type { Size } from './enums';
+export type Size =
+  | 'XSMALL'
+  | 'SMALL'
+  | 'MEDIUM'
+  | 'LARGE'
+  | 'XLARGE'
+  | 'XXLARGE'
+  | 'XXXLARGE'
+  | 'ONESIZE';
 
 export type ProductInventoryModel = {
   id: string;

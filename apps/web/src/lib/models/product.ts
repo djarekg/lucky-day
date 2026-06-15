@@ -1,4 +1,5 @@
-import type { Gender, ProductType } from './enums';
+import type { Gender } from './gender';
+import type { ProductType } from './product-type';
 
 export type ProductModel = {
   id: string;
