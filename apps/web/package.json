@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@types/bun": "catalog:",
-    "@types/node": "25.9.1",
     "@types/react-dom": "catalog:",
     "@types/react": "catalog:",
     "@typescript/native-preview": "catalog:",
