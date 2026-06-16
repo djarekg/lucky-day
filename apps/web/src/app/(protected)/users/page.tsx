@@ -1,14 +1,16 @@
-import { getUsers } from '@/app/api/user.api';
+import { Suspense } from 'react';
+
+import Loading from '@/components/loading/loading';
 import UsersLayout from '@/components/users/users-layout';
 
 import styles from './page.module.css';
 
-const Users = async () => {
-  const users = await getUsers();
-
+const Users = () => {
   return (
     <div className={styles.page}>
-      <UsersLayout users={users} />
+      <Suspense fallback={<Loading />}>
+        <UsersLayout />;
+      </Suspense>
     </div>
   );
 };

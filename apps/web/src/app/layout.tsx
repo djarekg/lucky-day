@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
+import GriffelRegistry from '@/components/griffel-registry/griffel-registry';
 import theme from '@/styles/theme';
 
 import '../styles/styles.css';
@@ -43,10 +44,12 @@ export default function RootLayout({
           defaultMode="dark"
         />
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <main>{children}</main>
-          </ThemeProvider>
+          <GriffelRegistry>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <main>{children}</main>
+            </ThemeProvider>
+          </GriffelRegistry>
         </AppRouterCacheProvider>
       </body>
     </html>

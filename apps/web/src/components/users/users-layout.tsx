@@ -1,27 +1,51 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 
-import UserCards from '@/components/users/user-cards';
-import UserTable from '@/components/users/user-table';
 import UsersHeader from '@/components/users/users-header';
+import { fetchUsers } from '@/lib/actions/user.actions';
 import { type UserModel, ViewMode } from '@/lib/models';
 
-type UsersClientProps = {
-  users: UserModel[];
-};
+import UserCards from './user-cards/user-cards';
+import UserTable from './user-table/user-table';
 
-const UsersLayout = ({ users }: UsersClientProps) => {
+const UsersLayout = () => {
+  const [users, setUsers] = useState<UserModel[] | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.Card);
+  const [loading, startTransition] = useTransition();
+
+  const reload = () => {
+    startTransition(async () => {
+      setUsers(await fetchUsers());
+    });
+  };
+
+  // Load users on initial mount.
+  useEffect(() => {
+    reload();
+  }, []);
+
+  const isLoading = loading || users === null;
 
   return (
     <>
       <UsersHeader
         viewMode={viewMode}
         viewModeChange={setViewMode}
+        onReload={reload}
       />
       <div>
-        {viewMode === ViewMode.Card ? <UserCards users={users} /> : <UserTable users={users} />}
+        {viewMode === ViewMode.Card ? (
+          <UserCards
+            loading={isLoading}
+            users={users || []}
+          />
+        ) : (
+          <UserTable
+            loading={isLoading}
+            users={users || []}
+          />
+        )}
       </div>
     </>
   );

@@ -3,7 +3,9 @@
 import { makeStyles } from '@griffel/react';
 import IconSwitch from '@lucky-day/components/icon-switch';
 import GridViewIcon from '@mui/icons-material/GridView';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import TableViewIcon from '@mui/icons-material/TableView';
+import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/zero-styled';
 import { useState } from 'react';
@@ -13,6 +15,7 @@ import { ViewMode } from '@/lib/models';
 type UsersHeaderProps = {
   viewMode?: ViewMode;
   viewModeChange?: (mode: ViewMode) => void;
+  onReload?: () => void;
 };
 
 const useStyles = makeStyles({
@@ -35,7 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-const UsersHeader = ({ viewMode = ViewMode.Card, viewModeChange }: UsersHeaderProps) => {
+const UsersHeader = ({ viewMode = ViewMode.Card, viewModeChange, onReload }: UsersHeaderProps) => {
   const theme = useTheme();
   const styles = useStyles();
   const [isCardView, setIsCardView] = useState(viewMode === ViewMode.Card);
@@ -51,6 +54,13 @@ const UsersHeader = ({ viewMode = ViewMode.Card, viewModeChange }: UsersHeaderPr
   return (
     <>
       <Toolbar className={styles.toolbar}>
+        {onReload && (
+          <IconButton
+            aria-label="Reload users"
+            onClick={onReload}>
+            <RefreshIcon />
+          </IconButton>
+        )}
         <IconSwitch
           thumbHoverBackgroundColor={theme.palette.primary.dark}
           thumbBackgroundColor={theme.palette.grey[900]}
