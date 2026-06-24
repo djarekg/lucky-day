@@ -22,6 +22,7 @@ const useStyles = makeStyles({
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
+    alignItems: 'center',
     padding: '0.5rem 1rem',
   },
   header: {
